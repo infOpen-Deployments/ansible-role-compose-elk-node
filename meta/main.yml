@@ -1,0 +1,25 @@
+---
+
+galaxy_info:
+  author: 'Alexandre Chaussier'
+  description: 'Ansible role to install and configure elk-node'
+  company: 'Infopen (https://infopen.pro)'
+  license: 'MIT'
+  min_ansible_version: '2.5'
+  github_branch: 'master'
+  platforms:
+    - name: 'Debian'
+      versions:
+        - 'stretch'
+    - name: 'EL'
+      versions:
+        - '7'
+    - name: 'Ubuntu'
+      versions:
+        - 'bionic'
+  galaxy_tags:
+    - 'docker'
+    - 'elastic'
+    - 'log'
+    - 'system'
+dependencies: []

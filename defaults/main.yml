@@ -1,0 +1,20 @@
+---
+
+# Defaults vars file for elk-node role
+
+
+# Ansistrano configuration
+elk_node_git_repo: 'git@gitlab.com:/infopen/infrastructure/docker-services/docker-elk-node.git'
+elk_node_git_branch: '1.0.0'
+
+
+# Role configuration
+elk_node_templates:
+  - src: 'templates/dot_env.j2'
+    dest: "{{ ansistrano_release_path.stdout }}/.env"
+elk_node_networks:
+  - name: 'services'
+elk_node_volumes:
+  - name: 'elk_node_data'
+
+elk_node_version: '6.5.3'
