@@ -5,7 +5,7 @@
 
 # Ansistrano configuration
 elk_node_git_repo: 'git@gitlab.com:/infopen/infrastructure/docker-services/docker-elk-node.git'
-elk_node_git_branch: '1.0.0'
+elk_node_git_branch: '1.2.0'
 
 
 # Role configuration
@@ -17,4 +17,14 @@ elk_node_networks:
 elk_node_volumes:
   - name: 'elk_node_data'
 
-elk_node_version: '6.5.3'
+# ELK stack version
+elk_node_version: '6.5.4'
+
+# Logging configuration
+elk_node_logging_max_file: 2
+elk_node_logging_max_size: '25m'
+
+# ELK Core components
+elk_node_elk_core_es_address: '127.0.0.1'
+elk_node_elk_core_kibana_address: '127.0.0.1'
+elk_node_elk_core_logstash_address: '127.0.0.1'
