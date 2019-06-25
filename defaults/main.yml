@@ -12,19 +12,35 @@ elk_node_git_branch: '1.2.0'
 elk_node_templates:
   - src: 'templates/dot_env.j2'
     dest: "{{ ansistrano_release_path.stdout }}/.env"
+  - src: 'templates/docker-compose.override.yml.j2'
+    dest: "{{ ansistrano_release_path.stdout }}/docker-compose.override.yml"
 elk_node_networks:
   - name: 'services'
 elk_node_volumes:
   - name: 'elk_node_data'
 
-# ELK stack version
-elk_node_version: '6.5.4'
-
-# Logging configuration
-elk_node_logging_max_file: 2
+elk_node_version: '6.7.1'
+elk_node_listen_ip_address: '127.0.0.1'
 elk_node_logging_max_size: '25m'
+elk_node_logging_max_file: 2
 
-# ELK Core components
-elk_node_elk_core_es_address: '127.0.0.1'
-elk_node_elk_core_kibana_address: '127.0.0.1'
-elk_node_elk_core_logstash_address: '127.0.0.1'
+elk_node_core_es_address: '66.66.66.66'
+elk_node_core_kibana_address: '66.66.66.66'
+elk_node_core_logstash_address: '66.66.66.66'
+
+elk_node_compose_override:
+  version: '3'
+  services:
+    filebeat:
+      extra_hosts:
+        - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
+        - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
+    metricbeat:
+      extra_hosts:
+        - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
+        - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
+    logstash:
+      extra_hosts:
+        - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
+        - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
+        - "logstash-core:${ELK_CORE_LOGSTASH_ADDRESS}"

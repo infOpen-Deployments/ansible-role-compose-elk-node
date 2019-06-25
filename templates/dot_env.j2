@@ -1,19 +1,18 @@
 # {{ ansible_managed }}
 
-#
-# Elastic stack version
-#
-ELK_VERSION={{ elk_core_version }}
+ELK_VERSION={{ elk_node_version }}
 
 #
 # ELK core components targets
 #
-ELK_CORE_ES_ADDRESS={{ elk_node_elk_core_es_address }}
-ELK_CORE_KIBANA_ADDRESS={{ elk_node_elk_core_kibana_address }}
-ELK_CORE_LOGSTASH_ADDRESS={{ elk_node_elk_core_logstash_address }}
+ELK_CORE_ES_ADDRESS={{ elk_node_core_es_address }}
+ELK_CORE_KIBANA_ADDRESS={{ elk_node_core_kibana_address }}
+ELK_CORE_LOGSTASH_ADDRESS={{ elk_node_core_logstash_address }}
+
 
 #
-# GENERAL
+# General settings
 #
-LOGGING_MAX_FILE={{ elk_node_logging_max_file }}
-LOGGING_MAX_SIZE={{ elk_node_logging_max_size }}
+LISTEN_IP_ADDRESS=127.0.0.1
+LOGGING_MAX_SIZE=25m
+LOGGING_MAX_FILE=2

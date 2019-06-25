@@ -1,3 +1,5 @@
 ---
 
 # Main vars file for elk-node role
+elk_node_service_project_name: 'elk_node'
+_docker_service_project_name: "{{ elk_node_service_project_name }}"
