@@ -47,7 +47,4 @@ elk_node_compose_override:
 
 
 # General
-elk_node_listen_ip_address: '127.0.0.1'
-elk_node_logging_max_size: '25m'
-elk_node_logging_max_file: 2
 elk_node_logstash_java_opts: '-Xmx256m -Xms128m'
