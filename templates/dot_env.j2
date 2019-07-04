@@ -13,6 +13,12 @@ ELK_CORE_LOGSTASH_ADDRESS={{ elk_node_core_logstash_address }}
 #
 # General settings
 #
-LISTEN_IP_ADDRESS=127.0.0.1
-LOGGING_MAX_SIZE=25m
-LOGGING_MAX_FILE=2
+LISTEN_IP_ADDRESS={{ elk_node_listen_ip_address }}
+LOGGING_MAX_SIZE={{ elk_node_logging_max_size }}
+LOGGING_MAX_FILE={{ elk_node_logging_max_file }}
+
+
+#
+# Logstash
+#
+LS_JAVA_OPTS='{{ elk_node_logstash_java_opts }}'

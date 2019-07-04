@@ -5,7 +5,7 @@
 
 # Ansistrano configuration
 elk_node_git_repo: 'git@gitlab.com:/infopen/infrastructure/docker-services/docker-elk-node.git'
-elk_node_git_branch: '1.2.0'
+elk_node_git_branch: '1.4.0'
 
 
 # Role configuration
@@ -44,3 +44,10 @@ elk_node_compose_override:
         - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
         - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
         - "logstash-core:${ELK_CORE_LOGSTASH_ADDRESS}"
+
+
+# General
+elk_node_listen_ip_address: '127.0.0.1'
+elk_node_logging_max_size: '25m'
+elk_node_logging_max_file: 2
+elk_node_logstash_java_opts: '-Xmx256m -Xms128m'
