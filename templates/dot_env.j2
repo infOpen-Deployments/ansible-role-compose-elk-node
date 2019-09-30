@@ -1,6 +1,12 @@
 # {{ ansible_managed }}
 
-ELK_VERSION={{ elk_node_version }}
+ELK_AUDITBEAT_IMAGE_NAME={{ elk_node_elk_auditbeat_image_name }}
+ELK_FILEBEAT_IMAGE_NAME={{ elk_node_elk_filebeat_image_name }}
+ELK_HEARTBEAT_IMAGE_NAME={{ elk_node_elk_heartbeat_image_name }}
+ELK_LOGSTASH_IMAGE_NAME={{ elk_node_elk_logstash_image_name }}
+ELK_METRICBEAT_IMAGE_NAME={{ elk_node_elk_metricbeat_image_name }}
+ELK_PACKETBEAT_IMAGE_NAME={{ elk_node_elk_packetbeat_image_name }}
+ELK_VERSION={{ elk_node_elk_version }}
 
 #
 # ELK core components targets
@@ -13,12 +19,11 @@ ELK_CORE_LOGSTASH_ADDRESS={{ elk_node_core_logstash_address }}
 #
 # General settings
 #
-LISTEN_IP_ADDRESS={{ elk_node_listen_ip_address }}
-LOGGING_MAX_SIZE={{ elk_node_logging_max_size }}
-LOGGING_MAX_FILE={{ elk_node_logging_max_file }}
-
+LISTEN_IP_ADDRESS=127.0.0.1
+LOGGING_MAX_SIZE=25m
+LOGGING_MAX_FILE=2
 
 #
 # Logstash
 #
-LS_JAVA_OPTS={{ elk_node_logstash_java_opts }}
+LS_JAVA_OPTS={{ elk_node_logstash_java_options }}
