@@ -4,47 +4,65 @@
 
 
 # Ansistrano configuration
-elk_node_git_repo: 'git@gitlab.com:/infopen/infrastructure/docker-services/docker-elk-node.git'
-elk_node_git_branch: '1.4.0'
+elk_node_git_repo: 'https://github.com/infOpen-Deployments/compose-elk-node.git'
+elk_node_git_branch: '7.3.0-1'
 
 
 # Role configuration
-elk_node_templates:
-  - src: 'templates/dot_env.j2'
-    dest: "{{ ansistrano_release_path.stdout }}/.env"
-  - src: 'templates/docker-compose.override.yml.j2'
-    dest: "{{ ansistrano_release_path.stdout }}/docker-compose.override.yml"
-elk_node_networks:
-  - name: 'services'
-elk_node_volumes:
-  - name: 'elk_node_data'
-
-elk_node_version: '6.7.1'
-elk_node_listen_ip_address: '127.0.0.1'
-elk_node_logging_max_size: '25m'
-elk_node_logging_max_file: 2
-
-elk_node_core_es_address: '66.66.66.66'
-elk_node_core_kibana_address: '66.66.66.66'
-elk_node_core_logstash_address: '66.66.66.66'
-
+elk_node_compose_options: ''
 elk_node_compose_override:
-  version: '3'
+  version: '3.4'
   services:
     filebeat:
       extra_hosts:
         - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
         - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
-    metricbeat:
+    heartbeat:
       extra_hosts:
         - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
         - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
+        - "logstash-core:${ELK_CORE_LOGSTASH_ADDRESS}"
     logstash:
       extra_hosts:
         - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
         - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
         - "logstash-core:${ELK_CORE_LOGSTASH_ADDRESS}"
+    metricbeat:
+      extra_hosts:
+        - "elasticsearch:${ELK_CORE_ES_ADDRESS}"
+        - "kibana:${ELK_CORE_KIBANA_ADDRESS}"
+elk_node_compose_path: '/usr/local/bin/docker-compose'
+elk_node_files: []
+elk_node_networks:
+  - name: 'elk-node'
+  - name: 'services'
+elk_node_project_name: 'elk-node'
+elk_node_templates:
+  - src: 'templates/dot_env.j2'
+    dest: "{{ ansistrano_release_path.stdout }}/.env"
+  - src: 'templates/docker-compose.override.yml.j2'
+    dest: "{{ ansistrano_release_path.stdout }}/docker-compose.override.yml"
+elk_node_volumes:
+  - name: 'elk_node_data'
 
 
-# General
-elk_node_logstash_java_opts: '-Xmx256m -Xms128m'
+#
+# .env
+#
+elk_node_elk_auditbeat_image_name: 'docker.elastic.co/beats/auditbeat'
+elk_node_elk_filebeat_image_name: 'docker.elastic.co/beats/filebeat'
+elk_node_elk_heartbeat_image_name: 'docker.elastic.co/beats/heartbeat'
+elk_node_elk_logstash_image_name: 'docker.elastic.co/logstash/logstash'
+elk_node_elk_metricbeat_image_name: 'docker.elastic.co/beats/metricbeat'
+elk_node_elk_packetbeat_image_name: 'docker.elastic.co/beats/packetbeat'
+elk_node_elk_version: '7.3.0'
+
+elk_node_listen_ip_address: '127.0.0.1'
+elk_node_logging_max_size: '25m'
+elk_node_logging_max_file: 2
+
+elk_node_core_es_address: '127.0.0.1'
+elk_node_core_kibana_address: '127.0.0.1'
+elk_node_core_logstash_address: '127.0.0.1'
+
+elk_node_logstash_java_options: '-Xmx256m -Xms128m'
